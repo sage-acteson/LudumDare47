@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         if(collision.CompareTag("Teleporter"))
         {
             Teleporter teleInfo = collision.gameObject.GetComponent<Teleporter>();
-            TimeLoopController.teleport(teleInfo.targetScene, teleInfo.spawnX);
+            TimeLoopController.Teleport(teleInfo.targetScene, teleInfo.spawnX);
         }
     }
 }

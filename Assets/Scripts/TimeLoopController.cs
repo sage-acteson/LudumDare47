@@ -10,7 +10,7 @@ public class TimeLoopController : MonoBehaviour
     public static TimeLoopController instance;
 
     public GameObject player;
-    public List<stringToInt> sceneToZoneMap = new List<stringToInt>();
+    public List<StringToInt> sceneToZoneMap = new List<StringToInt>();
     // State Managers
     public TreeSM TreeSM = new TreeSM();
 
@@ -30,27 +30,27 @@ public class TimeLoopController : MonoBehaviour
 
         instance.player = GameObject.FindGameObjectWithTag("Player");
 
-        instance.calculateZone(SceneManager.GetActiveScene().name);
+        instance.CalculateZone(SceneManager.GetActiveScene().name);
 
         // manually add states to list of states
         instance.SMs.Add(instance.TreeSM);
         // make sure the starting states are set
         foreach (BaseSM SM in instance.SMs)
         {
-            SM.reset();
+            SM.Reset();
         }
     }
 
 
 
-    public static void teleport(string targetScene, float spawnX)
+    public static void Teleport(string targetScene, float spawnX)
     {
         // change player x pos regarless of what happens
         instance.player.gameObject.transform.position = new Vector2(spawnX, instance.player.transform.position.y);
         // check if the target scene is not the current scene
         if (targetScene != SceneManager.GetActiveScene().name)
         {
-            instance.calculateZone(targetScene);
+            instance.CalculateZone(targetScene);
             SceneManager.LoadScene(targetScene);
         }
     }
@@ -69,7 +69,7 @@ public class TimeLoopController : MonoBehaviour
         {
             if(SM.name == targetSM)
             {
-                SM.nextState(input);
+                SM.NextState(input);
                 return;
             }
         }
@@ -77,14 +77,13 @@ public class TimeLoopController : MonoBehaviour
             "TargetSM: " + targetSM + ". Input: " +input);
     }
 
-    protected void calculateZone(string inputScene)
+    protected void CalculateZone(string inputScene)
     {
-        foreach(stringToInt si in instance.sceneToZoneMap)
+        foreach(StringToInt si in instance.sceneToZoneMap)
         {
             if(inputScene == si.str)
             {
                 instance.zone = si.integer;
-                Debug.Log(instance.zone);
                 return;
             }
         }

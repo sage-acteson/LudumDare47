@@ -37,9 +37,9 @@ public abstract class BaseSM
     public string startingState;
     protected BaseState currentState;
 
-    public abstract void nextState(string input);
-    public abstract void reset();
+    public abstract void NextState(string input);
+    public abstract void Reset();
 
     // TODO possibly store the states using polymorphism so this can be implemented here
-    public abstract BaseState stateFromName(string stateName);
+    public abstract BaseState StateFromName(string stateName);
 }

@@ -15,7 +15,7 @@ public class TreeSM :BaseSM
 {
     public List<TreeState> states = new List<TreeState>();
 
-    public override void nextState(string input)
+    public override void NextState(string input)
     {
         string nextStateName = currentState.GetNextState(input);
         if (nextStateName == null)
@@ -23,17 +23,17 @@ public class TreeSM :BaseSM
             Debug.LogError("Null stateName. CurrentState: " + currentState.name +
                 "\nInput: " + input);
         }
-        currentState = stateFromName(nextStateName);
+        currentState = StateFromName(nextStateName);
         Debug.Log("NEW current state for " + name +" : " + currentState.name);
     }
 
-    public override void reset()
+    public override void Reset()
     {
         // set the current state to the starting state
-        currentState = stateFromName(startingState);
+        currentState = StateFromName(startingState);
     }
 
-    public override BaseState stateFromName(string stateName)
+    public override BaseState StateFromName(string stateName)
     {
         // find a State from the given state name
         foreach (TreeState state in states)

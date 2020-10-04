@@ -9,7 +9,7 @@
 using System;
 
 [Serializable]
-public struct stringToInt
+public struct StringToInt
 {
     public string str;
     public int integer;

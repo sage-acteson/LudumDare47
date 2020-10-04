@@ -11,17 +11,6 @@ public class MainMenuController : MonoBehaviour
     public GameObject timeLoopPlayer;
     [Header("Story Loop")]
     public string storyLoopLevel = "firstLevel";
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void TimeLoopDemo()
     {

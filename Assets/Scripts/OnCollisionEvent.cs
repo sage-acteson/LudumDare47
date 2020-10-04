@@ -11,7 +11,7 @@ public class OnCollisionEvent : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(targetTag == "any" || collision.gameObject.tag == targetTag)
+        if(targetTag == "any" || collision.gameObject.CompareTag(targetTag))
         {
             collisionEvent.Invoke();
         }
