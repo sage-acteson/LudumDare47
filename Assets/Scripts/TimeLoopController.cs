@@ -11,6 +11,7 @@ public class TimeLoopController : MonoBehaviour
 
     public int zone;
     public GameObject player;
+
     public TreeSM TreeSM = new TreeSM();
 
     private List<BaseSM> SMs = new List<BaseSM>();

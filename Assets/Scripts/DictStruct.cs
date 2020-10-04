@@ -6,3 +6,11 @@
  */
 
 
+using System;
+
+[Serializable]
+public struct stringToInt
+{
+    public string str;
+    public int integer;
+}
