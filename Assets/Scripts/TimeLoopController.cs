@@ -9,11 +9,12 @@ public class TimeLoopController : MonoBehaviour
 {
     public static TimeLoopController instance;
 
-    public int zone;
     public GameObject player;
-
+    public List<stringToInt> sceneToZoneMap = new List<stringToInt>();
+    // State Managers
     public TreeSM TreeSM = new TreeSM();
 
+    private int zone;
     private List<BaseSM> SMs = new List<BaseSM>();
 
     void Awake()
@@ -26,9 +27,10 @@ public class TimeLoopController : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
-        zone = 0;
 
         instance.player = GameObject.FindGameObjectWithTag("Player");
+
+        instance.calculateZone(SceneManager.GetActiveScene().name);
 
         // manually add states to list of states
         instance.SMs.Add(instance.TreeSM);
@@ -47,8 +49,8 @@ public class TimeLoopController : MonoBehaviour
         instance.player.gameObject.transform.position = new Vector2(spawnX, instance.player.transform.position.y);
         // check if the target scene is not the current scene
         if (targetScene != SceneManager.GetActiveScene().name)
-        // TODO determine the 'age' based on the target scene
         {
+            instance.calculateZone(targetScene);
             SceneManager.LoadScene(targetScene);
         }
     }
@@ -73,5 +75,19 @@ public class TimeLoopController : MonoBehaviour
         }
         Debug.LogWarning("Attempted to access a state machine that isn't in the list. " +
             "TargetSM: " + targetSM + ". Input: " +input);
+    }
+
+    protected void calculateZone(string inputScene)
+    {
+        foreach(stringToInt si in instance.sceneToZoneMap)
+        {
+            if(inputScene == si.str)
+            {
+                instance.zone = si.integer;
+                Debug.Log(instance.zone);
+                return;
+            }
+        }
+        Debug.LogWarning("Unable to map scene to zone. Scene: " + inputScene);
     }
 }

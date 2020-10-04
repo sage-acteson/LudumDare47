@@ -43,8 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d608834d13802e3499bb78486cf320f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zone: 0
   player: {fileID: 5060476338310008271, guid: 7def7d5ec8fd3f548a126094bf6dfecd, type: 3}
+  sceneToZoneMap:
+  - str: Main_Menu
+    integer: -1000
+  - str: Time_Zone_-1
+    integer: -1
+  - str: Time_Zone_0
+    integer: 0
+  - str: Time_Zone_1
+    integer: 1
   TreeSM:
     name: Tree
     startingState: Default
